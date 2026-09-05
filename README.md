@@ -16,6 +16,38 @@ DeepSeek Harness / DSH、Claude Code 等）在对话中直接驱动，也可以�
 
 ## 安装
 
+### 一键安装（推荐）
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/toddpan/dsh-netdisk/main/install.sh)
+```
+
+安装脚本会自动：检测 Python 环境 → 装到 `~/.dsh/skills/baidu-netdisk`（无 `~/.dsh` 时装到
+`~/dsh-netdisk`）→ 安装依赖 → 启动**密钥配置向导**（支持把控制台凭证区域整段复制粘贴，
+自动解析 AppID/AppKey/SecretKey/SignKey）→ 询问是否立即进行百度账号授权登录。
+
+常用参数与环境变量：
+
+```bash
+# 非交互安装（CI / AI 代理），凭证走环境变量
+BPAN_APPID=124250552 BPAN_APPKEY=xxx BPAN_SECRETKEY=xxx \
+  bash <(curl -fsSL https://raw.githubusercontent.com/toddpan/dsh-netdisk/main/install.sh) -y
+
+# 重新运行密钥向导 / 指定安装目录 / 装完直接登录
+curl -fsSL https://raw.githubusercontent.com/toddpan/dsh-netdisk/main/install.sh -o install.sh
+bash install.sh --reconfig
+bash install.sh --dir /path/to/dir
+bash install.sh --login
+
+# 应答文件批量安装（首行 1=粘贴模式 2=逐项，随后按行给值，空行结束）
+printf '1\nAppID: ...\nAppKey: ...\nSecretKey: ...\n\n' \
+  | BPAN_WIZARD_STDIN=1 bash install.sh --reconfig --no-login
+```
+
+重复运行 = 自动更新（git pull），已有 config.json 不会被覆盖。
+
+### 手动安装
+
 ```bash
 # 1. 克隆到 DSH 技能目录（其他 Agent 平台放到对应 skills 目录即可）
 git clone https://github.com/toddpan/dsh-netdisk.git ~/.dsh/skills/baidu-netdisk
