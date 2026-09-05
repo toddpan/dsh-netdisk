@@ -98,6 +98,7 @@ info "安装目录: $BPAN_INSTALL_DIR"
 fetch_fresh() { # $1 = 目标目录
   local dst="$1" tmp
   tmp="${dst%.tar}.download.$$"
+  mkdir -p "$(dirname "$dst")"   # 目标父目录可能不存在（如首次创建 ~/.dsh/skills）
   if [ "$HAS_GIT" = "1" ]; then
     git clone --depth 1 -b "$BRANCH" "$REPO_URL" "$tmp" >/dev/null 2>&1 \
       || die "git clone 失败，请检查网络后重试"
