@@ -1,0 +1,10 @@
+# 本地凭证与令牌，绝不入库
+config.json
+token.json
+
+# Python
+__pycache__/
+*.pyc
+
+# 系统
+.DS_Store

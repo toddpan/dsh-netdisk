@@ -1,0 +1,10 @@
+{
+  "app_id": "你的AppID（纯数字）",
+  "app_key": "你的AppKey",
+  "secret_key": "你的SecretKey",
+  "sign_key": "你的SignKey（当前接口未用到，留占位即可）",
+  "share_secret": "",
+  "share_third_id": "0",
+  "scope": "basic,netdisk",
+  "remote_root": "/apps"
+}
