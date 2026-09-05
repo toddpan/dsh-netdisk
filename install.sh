@@ -136,16 +136,16 @@ fi
 
 # ---------------------------------------------------------------- 2. Python 依赖
 cd "$BPAN_INSTALL_DIR"
-if python3 -c "import requests, urllib3" >/dev/null 2>&1; then
-  info "Python 依赖已就绪（requests / urllib3）"
+if python3 -c "import requests, urllib3, dateutil" >/dev/null 2>&1; then
+  info "Python 依赖已就绪（requests / urllib3 / python-dateutil）"
 else
   info "安装 Python 依赖…"
-  if python3 -m pip install -q --user requests "urllib3>=1.25.3" >/dev/null 2>&1 \
-     || python3 -m pip install -q --user --break-system-packages requests "urllib3>=1.25.3" >/dev/null 2>&1 \
-     || python3 -m pip install -q --break-system-packages requests "urllib3>=1.25.3" >/dev/null 2>&1; then
+  if python3 -m pip install -q --user requests "urllib3>=1.25.3" python-dateutil >/dev/null 2>&1 \
+     || python3 -m pip install -q --user --break-system-packages requests "urllib3>=1.25.3" python-dateutil >/dev/null 2>&1 \
+     || python3 -m pip install -q --break-system-packages requests "urllib3>=1.25.3" python-dateutil >/dev/null 2>&1; then
     info "依赖安装完成"
   else
-    warn "pip 自动安装失败，请手动执行: python3 -m pip install --user requests urllib3"
+    warn "pip 自动安装失败，请手动执行: python3 -m pip install --user requests urllib3 python-dateutil"
   fi
 fi
 

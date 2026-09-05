@@ -53,7 +53,7 @@ printf '1\nAppID: ...\nAppKey: ...\nSecretKey: ...\n\n' \
 git clone https://github.com/toddpan/dsh-netdisk.git ~/.dsh/skills/baidu-netdisk
 
 # 2. 安装依赖（Python 3.9+）
-python3 -m pip install requests "urllib3>=1.25.3"
+python3 -m pip install requests "urllib3>=1.25.3" python-dateutil
 
 # 3. 填写应用凭证
 cp config.example.json config.json
